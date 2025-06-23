@@ -1,7 +1,12 @@
 let display = document.getElementById('display');
 
 function press(val) {
-    display.value += val;
+    // Prevent double operators
+    if ("+-*/".includes(val) && display.value.slice(-1).match(/[\+\-\*\/]/)) {
+        display.value = display.value.slice(0, -1) + val;
+    } else {
+        display.value += val;
+    }
 }
 
 function clearDisplay() {
